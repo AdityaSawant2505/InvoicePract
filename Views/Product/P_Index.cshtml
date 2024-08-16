@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "P_Index";
+    Layout = "~/Views/Shared/InvoiceLayout.cshtml";
+}
+<br />
+<script src="~/Javascript/Product.js"></script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <input type="button" value="New Product" id="btnProduct" class="btn btn-primary" />
+            <div class="modal fade" id="productModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>New Product</h4>
+                            <button class="btn-close" data-dissmiss="modal"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-title">Product Form</p>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label>Product Name</label>
+                        <input type="text" id="txtpro" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Product Rate</label>
+                        <input type="text" id="prort" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Tax</label>
+                        <input type="text" id="protax" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Quantity</label>
+                        <input type="text" id="proqnty" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <input type="button" value="Submit" id="btnsub" class="btn btn-primary" />
+                    <input type="button" value="Update" id="btnupd" class="btn btn-success" />
+                    <input type="button" value="Clear" onclick="ClearData()" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+        <div class="col-8"> 
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SR. NO</th>
+                        <th>Product</th>
+                        <th>Rate</th>
+                        <th>Tax</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="ptable">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

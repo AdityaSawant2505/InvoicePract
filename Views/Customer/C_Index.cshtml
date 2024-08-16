@@ -1,0 +1,38 @@
+﻿@model IEnumerable<InvoicePract.Models.tblcustomer>
+@{
+    ViewBag.Title = "C_Index";
+    Layout = "~/Views/Shared/InvoiceLayout.cshtml";
+}
+
+<h2>Customers</h2>
+<div class="row">
+    <div class="col-4">
+
+    </div>
+
+    <div class="col-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Customer_name</td>
+                        <td>@item.Email_address</td>
+                        <td>@item.Mobile_number</td>
+                        <td>@item.City</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

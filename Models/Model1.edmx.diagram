@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="404df35944e245699bff800e0370abce" Name="Diagram1">
+        <EntityTypeShape EntityType="InventryDbModel.invoice_details" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventryDbModel.tblcustomer" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventryDbModel.tblinboice_products" Width="1.5" PointX="5.625" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventryDbModel.tblinvoice_payments" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventryDbModel.tblproduct" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="InventryDbModel.FK__invoice_d__Custo__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="InventryDbModel.FK__tblinboic__Invoi__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="InventryDbModel.FK__tblinvoic__Invoi__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="InventryDbModel.FK__tblinboic__Produ__5165187F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

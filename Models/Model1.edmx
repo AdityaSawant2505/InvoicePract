@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InventryDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="invoice_details">
+          <Key>
+            <PropertyRef Name="Invoice_id" />
+          </Key>
+          <Property Name="Invoice_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Invoice_date" Type="date" />
+          <Property Name="Customer_id" Type="int" />
+          <Property Name="Total_amount" Type="float" />
+        </EntityType>
+        <EntityType Name="tblcustomer">
+          <Key>
+            <PropertyRef Name="Customer_id" />
+          </Key>
+          <Property Name="Customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email_address" Type="varchar" MaxLength="20" />
+          <Property Name="Mobile_number" Type="varchar" MaxLength="20" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblinboice_products">
+          <Key>
+            <PropertyRef Name="Invoice_produce_id" />
+          </Key>
+          <Property Name="Invoice_produce_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Invoice_id" Type="int" />
+          <Property Name="Product_id" Type="int" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="tblinvoice_payments">
+          <Key>
+            <PropertyRef Name="Payment_id" />
+          </Key>
+          <Property Name="Payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Invoice_id" Type="int" />
+          <Property Name="Payment_date" Type="date" />
+          <Property Name="Payment_ammount" Type="float" />
+          <Property Name="Payment_mode" Type="varchar" MaxLength="30" />
+          <Property Name="Descripation" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblproduct">
+          <Key>
+            <PropertyRef Name="Product_id" />
+          </Key>
+          <Property Name="Product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_name" Type="varchar" MaxLength="20" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="Tax" Type="float" />
+          <Property Name="Stock_quantity" Type="int" />
+        </EntityType>
+        <Association Name="FK__invoice_d__Custo__4D94879B">
+          <End Role="tblcustomer" Type="Self.tblcustomer" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblcustomer">
+              <PropertyRef Name="Customer_id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="Customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblinboic__Invoi__5070F446">
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="0..1" />
+          <End Role="tblinboice_products" Type="Self.tblinboice_products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice_details">
+              <PropertyRef Name="Invoice_id" />
+            </Principal>
+            <Dependent Role="tblinboice_products">
+              <PropertyRef Name="Invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblinboic__Produ__5165187F">
+          <End Role="tblproduct" Type="Self.tblproduct" Multiplicity="0..1" />
+          <End Role="tblinboice_products" Type="Self.tblinboice_products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblproduct">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="tblinboice_products">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblinvoic__Invoi__5441852A">
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="0..1" />
+          <End Role="tblinvoice_payments" Type="Self.tblinvoice_payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice_details">
+              <PropertyRef Name="Invoice_id" />
+            </Principal>
+            <Dependent Role="tblinvoice_payments">
+              <PropertyRef Name="Invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventryDbModelStoreContainer">
+          <EntitySet Name="invoice_details" EntityType="Self.invoice_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblcustomer" EntityType="Self.tblcustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblinboice_products" EntityType="Self.tblinboice_products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblinvoice_payments" EntityType="Self.tblinvoice_payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblproduct" EntityType="Self.tblproduct" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__invoice_d__Custo__4D94879B" Association="Self.FK__invoice_d__Custo__4D94879B">
+            <End Role="tblcustomer" EntitySet="tblcustomer" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblinboic__Invoi__5070F446" Association="Self.FK__tblinboic__Invoi__5070F446">
+            <End Role="invoice_details" EntitySet="invoice_details" />
+            <End Role="tblinboice_products" EntitySet="tblinboice_products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblinboic__Produ__5165187F" Association="Self.FK__tblinboic__Produ__5165187F">
+            <End Role="tblproduct" EntitySet="tblproduct" />
+            <End Role="tblinboice_products" EntitySet="tblinboice_products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblinvoic__Invoi__5441852A" Association="Self.FK__tblinvoic__Invoi__5441852A">
+            <End Role="invoice_details" EntitySet="invoice_details" />
+            <End Role="tblinvoice_payments" EntitySet="tblinvoice_payments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventryDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="invoice_details">
+          <Key>
+            <PropertyRef Name="Invoice_id" />
+          </Key>
+          <Property Name="Invoice_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Invoice_date" Type="DateTime" Precision="0" />
+          <Property Name="Customer_id" Type="Int32" />
+          <Property Name="Total_amount" Type="Double" />
+          <NavigationProperty Name="tblcustomer" Relationship="Self.FK__invoice_d__Custo__4D94879B" FromRole="invoice_details" ToRole="tblcustomer" />
+          <NavigationProperty Name="tblinboice_products" Relationship="Self.FK__tblinboic__Invoi__5070F446" FromRole="invoice_details" ToRole="tblinboice_products" />
+          <NavigationProperty Name="tblinvoice_payments" Relationship="Self.FK__tblinvoic__Invoi__5441852A" FromRole="invoice_details" ToRole="tblinvoice_payments" />
+        </EntityType>
+        <EntityType Name="tblcustomer">
+          <Key>
+            <PropertyRef Name="Customer_id" />
+          </Key>
+          <Property Name="Customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email_address" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="invoice_details" Relationship="Self.FK__invoice_d__Custo__4D94879B" FromRole="tblcustomer" ToRole="invoice_details" />
+        </EntityType>
+        <EntityType Name="tblinboice_products">
+          <Key>
+            <PropertyRef Name="Invoice_produce_id" />
+          </Key>
+          <Property Name="Invoice_produce_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Invoice_id" Type="Int32" />
+          <Property Name="Product_id" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="invoice_details" Relationship="Self.FK__tblinboic__Invoi__5070F446" FromRole="tblinboice_products" ToRole="invoice_details" />
+          <NavigationProperty Name="tblproduct" Relationship="Self.FK__tblinboic__Produ__5165187F" FromRole="tblinboice_products" ToRole="tblproduct" />
+        </EntityType>
+        <EntityType Name="tblinvoice_payments">
+          <Key>
+            <PropertyRef Name="Payment_id" />
+          </Key>
+          <Property Name="Payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Invoice_id" Type="Int32" />
+          <Property Name="Payment_date" Type="DateTime" Precision="0" />
+          <Property Name="Payment_ammount" Type="Double" />
+          <Property Name="Payment_mode" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Descripation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="invoice_details" Relationship="Self.FK__tblinvoic__Invoi__5441852A" FromRole="tblinvoice_payments" ToRole="invoice_details" />
+        </EntityType>
+        <EntityType Name="tblproduct">
+          <Key>
+            <PropertyRef Name="Product_id" />
+          </Key>
+          <Property Name="Product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="Tax" Type="Double" />
+          <Property Name="Stock_quantity" Type="Int32" />
+          <NavigationProperty Name="tblinboice_products" Relationship="Self.FK__tblinboic__Produ__5165187F" FromRole="tblproduct" ToRole="tblinboice_products" />
+        </EntityType>
+        <Association Name="FK__invoice_d__Custo__4D94879B">
+          <End Role="tblcustomer" Type="Self.tblcustomer" Multiplicity="0..1" />
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblcustomer">
+              <PropertyRef Name="Customer_id" />
+            </Principal>
+            <Dependent Role="invoice_details">
+              <PropertyRef Name="Customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblinboic__Invoi__5070F446">
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="0..1" />
+          <End Role="tblinboice_products" Type="Self.tblinboice_products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice_details">
+              <PropertyRef Name="Invoice_id" />
+            </Principal>
+            <Dependent Role="tblinboice_products">
+              <PropertyRef Name="Invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblinvoic__Invoi__5441852A">
+          <End Role="invoice_details" Type="Self.invoice_details" Multiplicity="0..1" />
+          <End Role="tblinvoice_payments" Type="Self.tblinvoice_payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice_details">
+              <PropertyRef Name="Invoice_id" />
+            </Principal>
+            <Dependent Role="tblinvoice_payments">
+              <PropertyRef Name="Invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblinboic__Produ__5165187F">
+          <End Role="tblproduct" Type="Self.tblproduct" Multiplicity="0..1" />
+          <End Role="tblinboice_products" Type="Self.tblinboice_products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblproduct">
+              <PropertyRef Name="Product_id" />
+            </Principal>
+            <Dependent Role="tblinboice_products">
+              <PropertyRef Name="Product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventryDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="invoice_details" EntityType="Self.invoice_details" />
+          <EntitySet Name="tblcustomers" EntityType="Self.tblcustomer" />
+          <EntitySet Name="tblinboice_products" EntityType="Self.tblinboice_products" />
+          <EntitySet Name="tblinvoice_payments" EntityType="Self.tblinvoice_payments" />
+          <EntitySet Name="tblproducts" EntityType="Self.tblproduct" />
+          <AssociationSet Name="FK__invoice_d__Custo__4D94879B" Association="Self.FK__invoice_d__Custo__4D94879B">
+            <End Role="tblcustomer" EntitySet="tblcustomers" />
+            <End Role="invoice_details" EntitySet="invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblinboic__Invoi__5070F446" Association="Self.FK__tblinboic__Invoi__5070F446">
+            <End Role="invoice_details" EntitySet="invoice_details" />
+            <End Role="tblinboice_products" EntitySet="tblinboice_products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblinvoic__Invoi__5441852A" Association="Self.FK__tblinvoic__Invoi__5441852A">
+            <End Role="invoice_details" EntitySet="invoice_details" />
+            <End Role="tblinvoice_payments" EntitySet="tblinvoice_payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblinboic__Produ__5165187F" Association="Self.FK__tblinboic__Produ__5165187F">
+            <End Role="tblproduct" EntitySet="tblproducts" />
+            <End Role="tblinboice_products" EntitySet="tblinboice_products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InventryDbModelStoreContainer" CdmEntityContainer="InventryDbEntities">
+          <EntitySetMapping Name="invoice_details">
+            <EntityTypeMapping TypeName="InventryDbModel.invoice_details">
+              <MappingFragment StoreEntitySet="invoice_details">
+                <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+                <ScalarProperty Name="Invoice_date" ColumnName="Invoice_date" />
+                <ScalarProperty Name="Customer_id" ColumnName="Customer_id" />
+                <ScalarProperty Name="Total_amount" ColumnName="Total_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblcustomers">
+            <EntityTypeMapping TypeName="InventryDbModel.tblcustomer">
+              <MappingFragment StoreEntitySet="tblcustomer">
+                <ScalarProperty Name="Customer_id" ColumnName="Customer_id" />
+                <ScalarProperty Name="Customer_name" ColumnName="Customer_name" />
+                <ScalarProperty Name="Email_address" ColumnName="Email_address" />
+                <ScalarProperty Name="Mobile_number" ColumnName="Mobile_number" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblinboice_products">
+            <EntityTypeMapping TypeName="InventryDbModel.tblinboice_products">
+              <MappingFragment StoreEntitySet="tblinboice_products">
+                <ScalarProperty Name="Invoice_produce_id" ColumnName="Invoice_produce_id" />
+                <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblinvoice_payments">
+            <EntityTypeMapping TypeName="InventryDbModel.tblinvoice_payments">
+              <MappingFragment StoreEntitySet="tblinvoice_payments">
+                <ScalarProperty Name="Payment_id" ColumnName="Payment_id" />
+                <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+                <ScalarProperty Name="Payment_date" ColumnName="Payment_date" />
+                <ScalarProperty Name="Payment_ammount" ColumnName="Payment_ammount" />
+                <ScalarProperty Name="Payment_mode" ColumnName="Payment_mode" />
+                <ScalarProperty Name="Descripation" ColumnName="Descripation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblproducts">
+            <EntityTypeMapping TypeName="InventryDbModel.tblproduct">
+              <MappingFragment StoreEntitySet="tblproduct">
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Product_name" ColumnName="Product_name" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="Stock_quantity" ColumnName="Stock_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

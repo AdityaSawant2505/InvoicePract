@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InventryDbModelStoreContainer" CdmEntityContainer="InventryDbEntities">
+    <EntitySetMapping Name="invoice_details">
+      <EntityTypeMapping TypeName="InventryDbModel.invoice_details">
+        <MappingFragment StoreEntitySet="invoice_details">
+          <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+          <ScalarProperty Name="Invoice_date" ColumnName="Invoice_date" />
+          <ScalarProperty Name="Customer_id" ColumnName="Customer_id" />
+          <ScalarProperty Name="Total_amount" ColumnName="Total_amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblcustomers">
+      <EntityTypeMapping TypeName="InventryDbModel.tblcustomer">
+        <MappingFragment StoreEntitySet="tblcustomer">
+          <ScalarProperty Name="Customer_id" ColumnName="Customer_id" />
+          <ScalarProperty Name="Customer_name" ColumnName="Customer_name" />
+          <ScalarProperty Name="Email_address" ColumnName="Email_address" />
+          <ScalarProperty Name="Mobile_number" ColumnName="Mobile_number" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblinboice_products">
+      <EntityTypeMapping TypeName="InventryDbModel.tblinboice_products">
+        <MappingFragment StoreEntitySet="tblinboice_products">
+          <ScalarProperty Name="Invoice_produce_id" ColumnName="Invoice_produce_id" />
+          <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+          <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblinvoice_payments">
+      <EntityTypeMapping TypeName="InventryDbModel.tblinvoice_payments">
+        <MappingFragment StoreEntitySet="tblinvoice_payments">
+          <ScalarProperty Name="Payment_id" ColumnName="Payment_id" />
+          <ScalarProperty Name="Invoice_id" ColumnName="Invoice_id" />
+          <ScalarProperty Name="Payment_date" ColumnName="Payment_date" />
+          <ScalarProperty Name="Payment_ammount" ColumnName="Payment_ammount" />
+          <ScalarProperty Name="Payment_mode" ColumnName="Payment_mode" />
+          <ScalarProperty Name="Descripation" ColumnName="Descripation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblproducts">
+      <EntityTypeMapping TypeName="InventryDbModel.tblproduct">
+        <MappingFragment StoreEntitySet="tblproduct">
+          <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+          <ScalarProperty Name="Product_name" ColumnName="Product_name" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Stock_quantity" ColumnName="Stock_quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

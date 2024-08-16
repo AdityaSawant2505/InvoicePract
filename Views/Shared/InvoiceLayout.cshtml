@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InvoiceLayout</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="container"> 
+        <div class="row">
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="/Customer/C_Index">Customer</a></li>
+                    <li class="list-group-item"><a href="/Invoice/I_Index">Invoice</a></li>
+                    <li class="list-group-item"><a href="/Product/P_Index">Product</a></li>
+                </ul>
+            </div>
+            <div class="col-10">
+                <div style="min-height:550px">
+                    @RenderBody()
+                </div><hr />
+                <div>
+                    <p>@Html.Raw("@")Copywrites <a href="www.Amazon.com">www.Amazon.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
